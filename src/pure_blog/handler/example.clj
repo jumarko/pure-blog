@@ -6,4 +6,4 @@
 
 (defmethod ig/init-key :pure-blog.handler/example [_ options]
   (fn [{[_] :ataraxy/result}]
-    [::response/ok {:example "data"}(io/resource "pure_blog/handler/example/example.html")]))
+    [::response/ok (io/resource "pure_blog/handler/example/example.html")]))
