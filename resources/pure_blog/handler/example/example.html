@@ -6,6 +6,15 @@
     <link rel="stylesheet" href="/css/site.css">
   </head>
   <body>
-    <h1>This is an example handler</h1>
-  </body>
+    <h1>Purely Functional Blog</h1>
+    <div>
+      <ul>
+        {% for p in posts %}
+        <li>
+          <h3>{{p.post/title}}</h3>
+          <p>{{p.post/preview}}</p>
+        </li>
+        {% endfor %}
+      </ul>    </div>
+  </bod
 </html>
