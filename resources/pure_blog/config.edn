@@ -6,7 +6,7 @@
  :duct.module/sql {}
 
  :duct.module/ataraxy
- {[:get "/example"] [:example]}
+ {[:get "/"] [:root]}
 
- :pure-blog.handler/example
+ :pure-blog.handler/root
  {:db #ig/ref :duct.database/sql}}

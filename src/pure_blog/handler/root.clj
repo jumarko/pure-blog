@@ -1,4 +1,4 @@
-(ns pure-blog.handler.example
+(ns pure-blog.handler.root
   (:require [ataraxy.core :as ataraxy]
             [ataraxy.response :as response] 
             [clojure.java.io :as io]
@@ -11,9 +11,9 @@
 
 (defn main-page
   []
-  (selmer/render-file "pure_blog/handler/example/example.html"
+  (selmer/render-file "pure_blog/handler/root/main-page.html"
                       {:posts (blog-posts)}))
 
-(defmethod ig/init-key :pure-blog.handler/example [_ options]
+(defmethod ig/init-key :pure-blog.handler/root [_ options]
   (fn [{[_] :ataraxy/result}]
     [::response/ok (main-page)]))
