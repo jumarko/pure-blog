@@ -2,4 +2,4 @@
  :duct.core/include ["pure_blog/config"]
 
  :duct.module/sql
- {:database-url "jdbc:postgresql://localhost/postgres"}}
+ {:database-url "jdbc:postgresql://localhost/pureblog"}}
