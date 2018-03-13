@@ -5,6 +5,14 @@
  :duct.module.web/site {}
  :duct.module/sql {}
 
+ ;; TODO juraj: how to handle migrations automatically without adding new config key for every migration script
+ ;; :duct.migrator/ragtime
+ ;; {:migrations [#ig/ref :pure-blog.migrations/init]}
+
+ ;; [:duct.migrator.ragtime/sql :pure-blog.migrations/init]
+ ;; {:up ["migrations/2018-13-03-init.sql"]
+ ;;  :down []}
+
  :duct.module/ataraxy
  {[:get "/"] [:root]}
 
