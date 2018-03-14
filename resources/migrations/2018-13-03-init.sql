@@ -1,6 +1,6 @@
 -- Holds all data about authenticated users
 -- see https://github.com/luminus-framework/luminus-template/blob/master/resources/leiningen/new/luminus/db/migrations/add-users-table.up.sql
-CREATE TABLE users
+CREATE TABLE IF NOT EXISTS users
 (id SERIAL PRIMARY KEY,
 first_name VARCHAR(64),
 last_name VARCHAR(64),
