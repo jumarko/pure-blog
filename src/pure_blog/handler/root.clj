@@ -5,7 +5,6 @@
             [pure-blog.domain.posts :as posts]
             [selmer.parser :as selmer]))
 
-
 (defn main-page
   [db]
   (selmer/render-file "pure_blog/handler/root/main-page.html"

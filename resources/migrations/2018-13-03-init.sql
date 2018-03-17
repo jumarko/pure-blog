@@ -14,7 +14,7 @@ pass VARCHAR(300));
 -- Blog posts data:
 CREATE TABLE IF NOT EXISTS posts
 (id SERIAL PRIMARY KEY,
-user_id INT REFERENCES users(id),
+user_id INT NOT NULL REFERENCES users(id),
 title VARCHAR(256),
 text TEXT,
 created_date TIMESTAMP,

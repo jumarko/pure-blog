@@ -3,21 +3,26 @@
   (:import duct.database.sql.Boundary))
 
 (defprotocol UsersDb
-  (get-user [db user-id]))
+  (get-user [db user-id])
+  (create-user [db user-data]))
 
 (defprotocol PostsDb
   (list-posts [db])
   (get-post [db post-id])
-  (create-post [db]))
+  (create-post [db post-data]))
 
 (extend-protocol UsersDb
   Boundary
   (get-user [{db :spec} user-id]
-    (sql/query db "SELECT * FROM users where id = :user-id" {:user-id user-id})))
+    (first (sql/query db ["SELECT * FROM users where id = ?" user-id])))
+  (create-user [{db :spec} user-data]
+    (sql/insert! db :users user-data)))
 
 (extend-protocol PostsDb
   Boundary
   (list-posts [{db :spec}]
     (sql/query db "SELECT * FROM posts"))
   (get-post [{db :spec} post-id]
-    (sql/query db "SELECT * FROM POSTS where id = :post-id" {:post-id post-id})))
+    (first (sql/query db ["SELECT * FROM posts where id = ?" post-id])))
+  (create-post [{db :spec} post-data]
+    (sql/insert! db :posts post-data)))

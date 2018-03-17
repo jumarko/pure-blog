@@ -7,10 +7,10 @@
   </head>
   <body>
     <h1>Purely Functional Blog</h1>
-    <div>
-      <ul>
+    <div class="posts">
+      <ul id="post-list">
         {% for p in posts %}
-        <li>
+        <li style="list-style-type: none;">
           <h3>{{p.post/title}}</h3>
           <p>{{p.post/preview}}</p>
         </li>
@@ -18,8 +18,5 @@
       </ul>
     </div>
 
-    <h2> Tables - just for testing </h2>
-    <div>
-      {{tables}}
   </body>
 </html>

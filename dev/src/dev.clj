@@ -4,6 +4,7 @@
             [fipp.edn :refer [pprint]]
             [clojure.tools.namespace.repl :refer [refresh]]
             [clojure.java.io :as io]
+            [clojure.java.jdbc :as sql]
             [duct.core :as duct]
             [duct.core.repl :as duct-repl]
             [eftest.runner :as eftest]
@@ -31,3 +32,8 @@
   "Helper function to access `db` component."
   []
   (val (ig/find-derived-1 system :duct.database/sql)))
+
+(defn db-spec
+  "db spec which can be directly used for clojure.java.jdbc queries."
+  []
+  (:spec (db)))
