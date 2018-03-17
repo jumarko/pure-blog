@@ -44,13 +44,12 @@
 
 (defn create-post
   "Creates new post using given data.
-  The post's created data is set to the current date/time."
+  The post's created date is set to the current date/time."
   [db {user-id :user/id} post-data]
   (db/create-post
    db
    (-> 
-    (readable->db-post user-id
-                       (assoc post-data :created-date (Date.)))
+    (readable->db-post user-id (assoc post-data :created-date (Date.)))
     (dissoc :id))))
 
 

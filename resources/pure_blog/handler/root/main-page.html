@@ -31,7 +31,9 @@
       <ul id="post-list">
         {% for p in posts %}
         <li style="list-style-type: none;">
-          <h3>{{p.post/title}}</h3>
+          <a href="/posts/{{p.post/id}}">
+            <h3>{{p.post/title}}</h3>
+          </a>
           <p>{{p.post/preview}}</p>
         </li>
         {% endfor %}
