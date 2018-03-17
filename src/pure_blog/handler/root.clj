@@ -2,18 +2,14 @@
   (:require [ataraxy.core :as ataraxy]
             [ataraxy.response :as response]
             [integrant.core :as ig]
-            [pure-blog.boundary.db :as db]
+            [pure-blog.domain.posts :as posts]
             [selmer.parser :as selmer]))
 
-(defn blog-posts []
-  [#:post{:title "Why Functional?"
-          :preview "This is a short essay on the benefits of Functional Programming."}])
 
 (defn main-page
-  [db-spec]
+  [db]
   (selmer/render-file "pure_blog/handler/root/main-page.html"
-                      {:posts (blog-posts)
-                       :tables (pr-str (db/get-tables db-spec))}))
+                      {:posts (posts/list-posts db)}))
 
 (defmethod ig/init-key :pure-blog.handler/root [_ {:keys [db]}]
   (fn [{[_] :ataraxy/result}]

@@ -25,3 +25,9 @@
   (load "local"))
 
 (integrant.repl/set-prep! (comp duct/prep read-config))
+
+;; see James Reeves' suggestion: https://groups.google.com/forum/#!searchin/duct-clojure/repl|sort:date/duct-clojure/U5pUGC4eeCs/hGnjxztNBQAJ
+(defn db
+  "Helper function to access `db` component."
+  []
+  (val (ig/find-derived-1 system :duct.database/sql)))
