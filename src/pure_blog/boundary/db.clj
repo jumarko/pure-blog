@@ -7,7 +7,7 @@
 
 (defprotocol PostsDb
   (list-posts [db])
-  (get-post [db])
+  (get-post [db post-id])
   (create-post [db]))
 
 (extend-protocol UsersDb
@@ -18,4 +18,6 @@
 (extend-protocol PostsDb
   Boundary
   (list-posts [{db :spec}]
-    (sql/query db "SELECT * FROM posts")))
+    (sql/query db "SELECT * FROM posts"))
+  (get-post [{db :spec} post-id]
+    (sql/query db "SELECT * FROM POSTS where id = :post-id" {:post-id post-id})))
