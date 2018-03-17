@@ -13,7 +13,13 @@
   :down []}
 
  :duct.module/ataraxy
- {[:get "/"] [:root]}
+ {[:get "/"] [:root/main]
+  "/posts"
+  {[:post {post :form-params}] [:posts/create post]
+   [:get]                      [:posts/list]
+   [:get "/" id]               [:posts/get ^int id]}}
 
- :pure-blog.handler/root
- {:db #ig/ref :duct.database/sql}}
+ :pure-blog.handler.root/main {:db #ig/ref :duct.database/sql}
+ :pure-blog.handler.posts/create {:db #ig/ref :duct.database/sql}
+ :pure-blog.handler.posts/list {:db #ig/ref :duct.database/sql}
+ :pure-blog.handler.posts/get {:db #ig/ref :duct.database/sql}}

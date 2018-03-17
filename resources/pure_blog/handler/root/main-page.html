@@ -7,7 +7,27 @@
   </head>
   <body>
     <h1>Purely Functional Blog</h1>
+
+    <div id="new-post" class="new-post">
+      <h2>Add new Post</h2>
+      <form action="/posts" method="post">
+        <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}"
+        <div>
+          <label for="post-title">Title:</label>
+          <input id="post-title" name="title" type ="text">
+        </div>
+        <div>
+          <label for="post-text">Body:</label>
+          <textarea id="post-text" name="text" rows="15" cols="66"></textarea>
+        </div>
+        <button id="add-post" type="submit">Publish</button>
+      </form>
+    </div>
+
+    <hr />
+
     <div class="posts">
+      <h2>Recent Posts:</h2>
       <ul id="post-list">
         {% for p in posts %}
         <li style="list-style-type: none;">
@@ -17,6 +37,7 @@
         {% endfor %}
       </ul>
     </div>
+
 
   </body>
 </html>

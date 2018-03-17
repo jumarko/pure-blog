@@ -48,8 +48,10 @@
   [db {user-id :user/id} post-data]
   (db/create-post
    db
-   (readable->db-post user-id
-                      (assoc post-data :created-date (Date.)))))
+   (-> 
+    (readable->db-post user-id
+                       (assoc post-data :created-date (Date.)))
+    (dissoc :id))))
 
 
 (comment
