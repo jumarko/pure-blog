@@ -1,10 +1,12 @@
 (ns pure-blog.domain.posts
   (:require [pure-blog.boundary.db :as db]
-            [pure-blog.domain.users :as users])
-  (:import java.util.Date))
+            [pure-blog.domain.users :as users]))
 
 (def max-post-preview-length 160)
 
+;;; TODO: should we move "readable" functions to db namespace?
+;;; Can we do better than just use `dissoc` to make sure that we don't override
+;;; some data in update-post function?
 (defn- db-post->readable
   "Converts db post data to the representation understood by the rest of the app."
   [db {:keys [id user_id title text created_date updated_date]}]
@@ -24,8 +26,7 @@
   ([post-data]
    (readable->db-post nil post-data))
   ([user-id {:post/keys [id title text created-date updated-date]}]
-   {:id id
-    :user_id user-id
+   {:user_id user-id
     :title title
     :text text
     :created_date created-date
@@ -44,6 +45,8 @@
   (when-let [db-post (db/get-post db post-id)]
     (db-post->readable db db-post)))
 
+(defn- now [] (java.sql.Timestamp. (System/currentTimeMillis)))
+
 (defn update-post
   "Creates new post using given data.
   The post's updated date is set to the current date/time."
@@ -51,8 +54,8 @@
   (db/update-post
    db
    post-id
-   (-> (readable->db-post (assoc post-data :updated-date (Date.)))
-       (dissoc :user_id :id))))
+   (-> (readable->db-post (assoc post-data :post/updated-date (now)))
+       (dissoc :user_id :created_date))))
 
 (defn create-post
   "Creates new post using given data.
@@ -60,12 +63,13 @@
   [db {user-id :user/id} post-data]
   (db/create-post
    db
-   (-> 
-    (readable->db-post user-id (assoc post-data :created-date (Date.)))
-    (dissoc :id))))
+   (->
+    (readable->db-post user-id (assoc post-data :post/created-date (now))))))
 
 (comment
   (create-post (dev/db) #:user{:id 1} #:post{:id 0 :title "awesome"})
+
   (list-posts (dev/db))
+
   (get-post (dev/db) 0)
   )

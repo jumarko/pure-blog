@@ -22,7 +22,7 @@
 (extend-protocol PostsDb
   Boundary
   (list-posts [{db :spec}]
-    (sql/query db "SELECT * FROM posts"))
+    (sql/query db "SELECT * FROM posts ORDER BY created_date DESC"))
   (get-post [{db :spec} post-id]
     (first (sql/query db ["SELECT * FROM posts where id = ?" post-id])))
   (create-post [{db :spec} post-data]
