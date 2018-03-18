@@ -1,15 +1,15 @@
 {:duct.core/project-ns  pure-blog
  :duct.core/environment :production
 
- :duct.module/logging {}
+ :duct.module/logging  {}
  :duct.module.web/site {}
- :duct.module/sql {}
+ :duct.module/sql      {}
 
  :duct.migrator/ragtime
  {:migrations [#ig/ref :pure-blog.migrations/init]}
 
  [:duct.migrator.ragtime/sql :pure-blog.migrations/init]
- {:up [#duct/resource "migrations/2018-13-03-init.sql"]
+ {:up   [#duct/resource "migrations/2018-13-03-init.sql"]
   :down []}
 
  :duct.module/ataraxy
@@ -17,9 +17,14 @@
   "/posts"
   {[:post {post :form-params}] [:posts/create post]
    [:get]                      [:posts/list]
-   [:get "/" id]               [:posts/get ^int id]}}
+   ["/" id]
+   {:get                        [:posts/get ^int id]
+    [:post {post :form-params}] [:posts/update ^int id post]}
+   [:get "/" id "/edit"]       [:posts/edit ^int id]}}
 
- :pure-blog.handler.root/main {:db #ig/ref :duct.database/sql}
+ :pure-blog.handler.root/main    {:db #ig/ref :duct.database/sql}
  :pure-blog.handler.posts/create {:db #ig/ref :duct.database/sql}
- :pure-blog.handler.posts/list {:db #ig/ref :duct.database/sql}
- :pure-blog.handler.posts/get {:db #ig/ref :duct.database/sql}}
+ :pure-blog.handler.posts/list   {:db #ig/ref :duct.database/sql}
+ :pure-blog.handler.posts/get    {:db #ig/ref :duct.database/sql}
+ :pure-blog.handler.posts/update {:db #ig/ref :duct.database/sql}
+ :pure-blog.handler.posts/edit   {:db #ig/ref :duct.database/sql}}

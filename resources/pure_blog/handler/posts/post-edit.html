@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" class="example">
+  <head>
+    <title>Pure Blog - Only Functional</title>
+    <link rel="stylesheet" href="/assets/normalize.css/normalize.css">
+    <link rel="stylesheet" href="/css/site.css">
+  </head>
+  <body>
+    <h1>Purely Functional Blog</h1>
+
+    <div id="edit-post" class="edit-post">
+      <h2>Update Post</h2>
+      <form action="/posts/{{post/id}}" method="post">
+        <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}"
+        <div>
+          <label for="post-title">Title:</label>
+          <input id="post-title" name="title" type ="text" value="{{post/title}}">
+        </div>
+        <div>
+          <label for="post-text">Body:</label>
+          <textarea id="post-text" name="text" rows="15" cols="66">
+            {{post/text}}
+          </textarea>
+        </div>
+        <button id="add-post" type="submit">Update</button>
+      </form>
+    </div>
+
+  </body>
+</html>

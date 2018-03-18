@@ -9,7 +9,8 @@
 (defprotocol PostsDb
   (list-posts [db])
   (get-post [db post-id])
-  (create-post [db post-data]))
+  (create-post [db post-data])
+  (update-post [db post-id post-data]))
 
 (extend-protocol UsersDb
   Boundary
@@ -25,4 +26,6 @@
   (get-post [{db :spec} post-id]
     (first (sql/query db ["SELECT * FROM posts where id = ?" post-id])))
   (create-post [{db :spec} post-data]
-    (sql/insert! db :posts post-data)))
+    (sql/insert! db :posts post-data))
+  (update-post [{db :spec} post-id post-data]
+    (sql/update! db :posts post-data ["id = ?" post-id])))

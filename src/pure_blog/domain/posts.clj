@@ -21,13 +21,15 @@
      user)))
 
 (defn- readable->db-post
-  [user-id {:post/keys [id title text created-date updated-date]}]
-  {:id id
-   :user_id user-id
-   :title title
-   :text text
-   :created_date created-date
-   :updated_date updated-date})
+  ([post-data]
+   (readable->db-post nil post-data))
+  ([user-id {:post/keys [id title text created-date updated-date]}]
+   {:id id
+    :user_id user-id
+    :title title
+    :text text
+    :created_date created-date
+    :updated_date updated-date}))
 
 (defn list-posts
   "Lists all existing posts in database.
@@ -42,6 +44,16 @@
   (when-let [db-post (db/get-post db post-id)]
     (db-post->readable db db-post)))
 
+(defn update-post
+  "Creates new post using given data.
+  The post's updated date is set to the current date/time."
+  [db post-id post-data]
+  (db/update-post
+   db
+   post-id
+   (-> (readable->db-post (assoc post-data :updated-date (Date.)))
+       (dissoc :user_id :id))))
+
 (defn create-post
   "Creates new post using given data.
   The post's created date is set to the current date/time."
@@ -51,7 +63,6 @@
    (-> 
     (readable->db-post user-id (assoc post-data :created-date (Date.)))
     (dissoc :id))))
-
 
 (comment
   (create-post (dev/db) #:user{:id 1} #:post{:id 0 :title "awesome"})
