@@ -16,7 +16,6 @@
  {[:get "/"] [:root/main]
   "/posts"
   {[:post {post :form-params}] [:posts/create post]
-   [:get]                      [:posts/list]
    ["/" id]
    {:get                        [:posts/get ^int id]
     [:post {post :form-params}] [:posts/update ^int id post]}
@@ -24,7 +23,6 @@
 
  :pure-blog.handler.root/main    {:db #ig/ref :duct.database/sql}
  :pure-blog.handler.posts/create {:db #ig/ref :duct.database/sql}
- :pure-blog.handler.posts/list   {:db #ig/ref :duct.database/sql}
  :pure-blog.handler.posts/get    {:db #ig/ref :duct.database/sql}
  :pure-blog.handler.posts/update {:db #ig/ref :duct.database/sql}
  :pure-blog.handler.posts/edit   {:db #ig/ref :duct.database/sql}}
