@@ -35,7 +35,8 @@
   (fn [{[_ id] :ataraxy/result}]
     (if-let [post (posts/get-post db id)]
       [::response/ok (post-edit-page post)]
-      [::response/not-found {:error :not-found}])))
+      ;; TODO: nil works fine, following not
+      #_[::response/not-found {:error :not-found}])))
 
 (defmethod ig/init-key ::create [_ {:keys [db]}]
   (fn [{[_ post] :ataraxy/result}]
@@ -46,4 +47,7 @@
   (fn [{[_ id] :ataraxy/result}]
     (if-let [post (posts/get-post db id)]
       [::response/ok (post-detail-page post)]
-      [::response/not-found {:error :not-found}])))
+      ;; TODO: this doesn't work - maybe configuration error?
+      ;; however, nil works just fine  and is translated to NOT FOUND
+      #_[::response/not-found {:error :not-found}]
+      )))
