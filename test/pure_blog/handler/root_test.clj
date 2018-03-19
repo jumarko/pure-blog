@@ -21,7 +21,7 @@
 (deftest smoke-test
   (testing "example page exists"
     (let [handler  (ig/init-key :pure-blog.handler.root/main {:db (->DummyDb)})
-          response (handler (mock/request :get "/example"))]
-      (is (= :ataraxy.response/ok (first response)) "response ok")
-      (is (string/includes? response "Hello, Post"))
-      (is (string/includes? response "Second Post")))))
+          [status body] (handler (mock/request :get "/example"))]
+      (is (= :ataraxy.response/ok status) "response ok")
+      (is (string/includes? body "Hello, Post"))
+      (is (string/includes? body "Second Post")))))
