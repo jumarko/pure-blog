@@ -10,7 +10,8 @@
                  [duct/module.sql "0.4.2"]
                  [org.postgresql/postgresql "42.1.4"]
                  [selmer "1.11.7"]
-                 [buddy/buddy-hashers "1.3.0"]]
+                 [buddy/buddy-hashers "1.3.0"]
+                 [org.clojure/test.check "0.10.0-alpha2"]]
   :plugins [[duct/lein-duct "0.10.6"]]
   :main ^:skip-aot pure-blog.main
   :resource-paths ["resources" "target/resources"]
