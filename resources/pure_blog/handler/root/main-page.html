@@ -1,45 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" class="example">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pure Blog - Only Functional</title>
     <link rel="stylesheet" href="/assets/normalize.css/normalize.css">
     <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   </head>
   <body>
-    <h1>Purely Functional Blog</h1>
 
-    <div id="new-post" class="new-post">
-      <h2>Add new Post</h2>
-      <form action="/posts" method="post">
-        <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}"
-        <div>
-          <label for="post-title">Title:</label>
-          <input id="post-title" name="title" type ="text">
+    <section class="hero is-primary">
+      <h1 class="title is-1">Purely Functional Blog</h1>
+    </section>
+
+    <section class="section">
+      <div id="new-post" class="container is-fluid">
+        <h2 class="subtitle is-2">Add new Post</h2>
+        <form action="/posts" method="post">
+          <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}">
+          <div class="field">
+            <label class="label is-large" for="post-title">Title:</label>
+            <div class="control">
+              <input class="input is-primary is-large" id="post-title" name="title" type ="text">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label is-large" for="post-text">Text:</label>
+            <div class="control">
+              <textarea class="textarea is-primary " id="post-text" name="text" rows="15" cols="66"></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-danger is-large" id="add-post" type="submit" >Publish</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <hr />
+    </section>
+
+      <section class="section">
+      <div class="container is-fluid">
+        <h2 class="subtitle is-2">Recent Posts</h2>
+        <ul id="post-list">
+          {% for p in posts %}
+            <li style="list-style-type: none;">
+                <a class="button is-info is-fullwidth" href="/posts/{{p.post/id}}">
+                  <h3 class="subtitle">{{p.post/title}}</h3>
+                </a>
+                <p>{{p.post/preview}}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          This blog has been created as an experimental project for PurelyFunctional.tv.
         </div>
-        <div>
-          <label for="post-text">Body:</label>
-          <textarea id="post-text" name="text" rows="15" cols="66"></textarea>
-        </div>
-        <button id="add-post" type="submit">Publish</button>
-      </form>
-    </div>
-
-    <hr />
-
-    <div class="posts">
-      <h2>Recent Posts:</h2>
-      <ul id="post-list">
-        {% for p in posts %}
-        <li style="list-style-type: none;">
-          <a href="/posts/{{p.post/id}}">
-            <h3>{{p.post/title}}</h3>
-          </a>
-          <p>{{p.post/preview}}</p>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-
-
+      </div>
+    </footer>
   </body>
 </html>
