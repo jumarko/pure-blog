@@ -1,7 +1,7 @@
 (ns pure-blog.handler.posts
   (:require [ataraxy.response :as response]
             [integrant.core :as ig]
-            [pure-blog.domain.posts :as posts]
+            [pure-blog.features.posts :as posts]
             [pure-blog.util :as u]
             [ring.middleware.anti-forgery :refer [*anti-forgery-token*]]
             [selmer.parser :as selmer]))

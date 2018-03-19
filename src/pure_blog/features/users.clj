@@ -1,4 +1,4 @@
-(ns pure-blog.domain.users
+(ns pure-blog.features.users
   (:require [buddy.hashers :as hashers]
             [pure-blog.boundary.db :as db]))
 

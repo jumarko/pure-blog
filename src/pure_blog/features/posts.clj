@@ -1,6 +1,6 @@
-(ns pure-blog.domain.posts
+(ns pure-blog.features.posts
   (:require [pure-blog.boundary.db :as db]
-            [pure-blog.domain.users :as users]))
+            [pure-blog.features.users :as users]))
 
 (def max-post-preview-length 160)
 
