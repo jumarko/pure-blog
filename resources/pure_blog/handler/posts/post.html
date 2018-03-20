@@ -3,20 +3,24 @@
 {% block content %}
 <section class="section">
   <div class="container is-fluid">
+    <article >
+    <div class="edit-post-button">
     <p>
       <a class="button is-danger" href="{{post-edit-link}}">EDIT!</a>
     </p>
+    </div>
 
-    <h2 class="title is-2">{{post/title}}</h2>
+    <h2 class="edit-post-title title is-2">{{post/title}}</h2>
 
-    <div>
+    <div class="edit-post-author-info">
       <p><i>Created {{post/created-date|date:"yyyy-MM-dd HH:mm"}}
         by {{user/first-name}} {{user/last-name}}</i></p>
     </div>
 
-    <div class=""
+    <div class="edit-post-text"
       {{post/text|linebreaks|safe}}
     </div>
+    </article>
   </div>
 </section>
 {% endblock %}

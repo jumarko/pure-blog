@@ -1,6 +1,15 @@
 body {
   background-color: #f4f4f4;
 }
+
+article {
+  margin: 10px 0 30px 10px;
+}
+
+.new-post {
+  margin: 0 0 50px 0;
+}
+
 .blog-header {
   min-height: 150px;
   background-color: deepskyblue;
@@ -11,6 +20,27 @@ body {
   padding-top: 30px;
 }
 
+.post-title {
+  text-decoration: underline;
+}
 .post-text {
   background-color: lightyellow;
+}
+
+.edit-post-button {
+  margin: 0 0 50px 50px; 
+}
+
+.edit-post-title {
+  text-align: center;
+}
+
+.edit-post-author-info {
+  text-align: center;
+}
+
+.edit-post-text {
+  margin: 50px 50px 0 50px;
+  padding: 20px 20px 20px 20px;
+  background-color: white;
 }
