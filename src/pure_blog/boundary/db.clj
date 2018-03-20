@@ -1,6 +1,8 @@
 (ns pure-blog.boundary.db
-  (:require [clojure.java.jdbc :as sql])
-  (:import duct.database.sql.Boundary))
+  (:require [clojure.java.jdbc :as sql]
+            ;; this is needed to make `Boundary` import work with AOT compilation (uberjar)
+            [duct.database.sql :as dsql])
+  (:import (duct.database.sql Boundary)))
 
 (defprotocol UsersDb
   (get-user [db user-id])
