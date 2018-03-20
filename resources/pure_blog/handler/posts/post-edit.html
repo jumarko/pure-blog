@@ -11,20 +11,32 @@
           by {{user/first-name}} {{user/last-name}}</i></p>
       </div>
 
+      <!-- TODO: how to include edit-post-fragment.html properly? html
+           Using {{post/id}} with include will cause an error (starting and ending curly brace ommited to avoid selmer errors):
+             % include "pure_blog/handler/posts/edit-post-fragment.html" with form-action-url="/posts/{{post/id}}" submit-button-text="Update" %
+          As a temporary solution following form has been copied from the fragment
+      -->
       <form action="/posts/{{post/id}}" method="post">
         <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}"
-        <div>
-          <label for="post-title">Title:</label>
-          <input id="post-title" name="title" type ="text" value="{{post/title}}">
+        <div class="field">
+          <label class="label is-large" for="post-title">Title:</label>
+          <div class="control">
+            <input class="input is-primary is-large" id="post-title" name="title" type="text" value="{{post/title}}">
+          </div>
         </div>
-        <div>
-          <label for="post-text">Body:</label>
-          <textarea id="post-text" name="text" rows="15" cols="66">
-            {{post/text}}
-          </textarea>
+        <div class="field">
+          <label class="label is-large" for="post-text">Text:</label>
+          <div class="control">
+            <textarea class="textarea is-primary " id="post-text" name="text" rows="15" cols="66">{{post/text}}</textarea>
+          </div>
         </div>
-        <button class="button is-danger" id="add-post" type="submit">Update</button>
+        <div class="field">
+          <div class="control">
+            <button class="button is-danger is-large" id="add-post" type="submit">Update</button>
+          </div>
+        </div>
       </form>
+      
     </div>
   </div>
 </section>

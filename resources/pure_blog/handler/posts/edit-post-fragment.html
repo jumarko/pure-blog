@@ -1,20 +1,25 @@
+<!-- Reusable fragment for adding new post or editing an existing post.
+     Parameters:
+     * form-action-url    - where to submit form
+     * submit-button-text - text to displaed on submit button
+     * csrf-token         - should be available in the parent template out of the box -->
 <form action="{{form-action-url}}" method="post">
   <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}"
   <div class="field">
     <label class="label is-large" for="post-title">Title:</label>
     <div class="control">
-      <input class="input is-primary is-large" id="post-title" name="title" type="text" value="{{title}}">
+      <input class="input is-primary is-large" id="post-title" name="title" type="text" value="{{post/title}}">
     </div>
   </div>
   <div class="field">
     <label class="label is-large" for="post-text">Text:</label>
     <div class="control">
-      <textarea class="textarea is-primary " id="post-text" name="text" rows="15" cols="66">{{text}}</textarea>
+      <textarea class="textarea is-primary " id="post-text" name="text" rows="15" cols="66">{{post/text}}</textarea>
     </div>
   </div>
   <div class="field">
     <div class="control">
-      <button class="button is-danger is-large" id="add-post" type="submit" >{{submit-button-text}}</button>
+      <button class="button is-danger is-large" id="add-post" type="submit">{{submit-button-text}}</button>
     </div>
   </div>
 </form>

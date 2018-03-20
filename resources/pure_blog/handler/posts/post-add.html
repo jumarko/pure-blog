@@ -2,30 +2,12 @@
 
 {% block content %}
 <section class="section">
-  <div class="container is-fluid">
-    <div id="new-post" class="container is-fluid">
+  <div class="container">
+    <div id="new-post" class="container">
       <h2 class="subtitle is-2">Add new Post</h2>
 
-      <form action="/posts" method="post">
-        <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}">
-        <div class="field">
-          <label class="label is-large" for="post-title">Title:</label>
-          <div class="control">
-            <input class="input is-primary is-large" id="post-title" name="title" type ="text">
-          </div>
-        </div>
-        <div class="field">
-          <label class="label is-large" for="post-text">Text:</label>
-          <div class="control">
-            <textarea class="textarea is-primary " id="post-text" name="text" rows="15" cols="66"></textarea>
-          </div>
-        </div>
-        <div class="field">
-          <div class="control">
-            <button class="button is-danger is-large" id="add-post" type="submit" >Publish</button>
-          </div>
-        </div>
-      </form>
+      {% include "pure_blog/handler/posts/edit-post-fragment.html" with form-action-url="/posts" submit-button-text="Publish" %}
+      
     </div>
   </div>
 </section>
