@@ -1,8 +1,17 @@
 (ns pure-blog.features.posts
-  (:require [pure-blog.boundary.db :as db]
+  (:require [clojure.string :as string]
+            [pure-blog.boundary.db :as db]
             [pure-blog.features.users :as users]))
 
 (def max-post-preview-length 160)
+
+(defn preview
+  "Returns the preview of given text which is the first line of that text"
+  [text]
+  (when text
+    (->> (.split text "\n")
+         (filter (complement string/blank?))
+         first)))
 
 ;;; TODO: should we move "readable" functions to db namespace?
 ;;; Can we do better than just use `dissoc` to make sure that we don't override
@@ -14,8 +23,7 @@
     (merge
      #:post{:id id
             :title title
-            :preview (some-> text (subs 0 (min max-post-preview-length
-                                        (count text))))
+            :preview (preview text)
             :text text
             ;; TODO convert dates to proper format
             :created-date created_date
@@ -34,7 +42,8 @@
 
 (defn list-posts
   "Lists all existing posts in database.
-  Only `:preview` is available for each post, not the full `:text.`"
+  Only `:preview` is available for each post, not the full `:text.`
+  The preview contains the first line of the post's text."
   [db]
   (let [posts (db/list-posts db)]
     (mapv #(dissoc (db-post->readable db %) :text)
