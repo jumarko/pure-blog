@@ -26,6 +26,10 @@
   (selmer/render-file "pure_blog/handler/posts/post.html"
                       (assoc post :post-edit-link (str "/posts/" id "/edit"))))
 
+(defn- add-post-page []
+  (selmer/render-file "pure_blog/handler/posts/post-add.html"
+                      {:csrf-token *anti-forgery-token*}))
+
 (defmethod ig/init-key ::update [_ {:keys [db]}]
   (fn [{[_ id post] :ataraxy/result}]
     (let [_ (update-post db id post)]
@@ -42,6 +46,10 @@
   (fn [{[_ post] :ataraxy/result}]
     (let [_ (create-post db post)]
       [::response/see-other "/"])))
+
+(defmethod ig/init-key ::add [_ _]
+  (fn [_]
+    [::response/ok (add-post-page)]))
 
 (defmethod ig/init-key ::get [_ {:keys [db]}]
   (fn [{[_ id] :ataraxy/result}]

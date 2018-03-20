@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-<html lang="en" class="example">
-  <head>
-    <title>Pure Blog - Only Functional</title>
-    <link rel="stylesheet" href="/assets/normalize.css/normalize.css">
-    <link rel="stylesheet" href="/css/site.css">
-  </head>
-  <body>
-    <h1>Purely Functional Blog</h1>
+{% extends "pure_blog/base.html" %}
 
+{% block content %}
+<section class="section">
+  <div class="container is-fluid">
     <p>
-      <a href="{{post-edit-link}}">EDIT!</a>
+      <a class="button is-danger" href="{{post-edit-link}}">EDIT!</a>
     </p>
 
     <div class="post">
-      <h2>{{post/title}}</h2>
-      <p>{{post/text}}</p>
+      <h1 class="title is-1">{{post/title}}</h1>
+        <div class="content"
+          <p>{{post/text}}</p>
+        </div>
     </div>
-
-
-  </body>
-</html>
+  </div>
+</section>
+{% endblock %}

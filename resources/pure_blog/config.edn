@@ -14,6 +14,7 @@
 
  :duct.module/ataraxy
  {[:get "/"] [:root/main]
+  [:get "/post-add"] [:posts/add]
   "/posts"
   {[:post {post :form-params}] [:posts/create post]
    ["/" id]
@@ -22,6 +23,7 @@
    [:get "/" id "/edit"]       [:posts/edit ^int id]}}
 
  :pure-blog.handler.root/main    {:db #ig/ref :duct.database/sql}
+ :pure-blog.handler.posts/add    {}
  :pure-blog.handler.posts/create {:db #ig/ref :duct.database/sql}
  :pure-blog.handler.posts/get    {:db #ig/ref :duct.database/sql}
  :pure-blog.handler.posts/update {:db #ig/ref :duct.database/sql}

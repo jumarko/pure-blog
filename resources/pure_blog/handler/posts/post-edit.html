@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" class="example">
-  <head>
-    <title>Pure Blog - Only Functional</title>
-    <link rel="stylesheet" href="/assets/normalize.css/normalize.css">
-    <link rel="stylesheet" href="/css/site.css">
-  </head>
-  <body>
-    <h1>Purely Functional Blog</h1>
+{% extends "pure_blog/base.html" %}
 
+{% block content %}
+<section class="section">
+  <div class="container is-fluid">
     <div id="edit-post" class="edit-post">
-      <h2>Update Post</h2>
+      <h2 class="subtitle is-2">Update Post</h2>
+
       <form action="/posts/{{post/id}}" method="post">
         <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}"
         <div>
@@ -22,9 +18,9 @@
             {{post/text}}
           </textarea>
         </div>
-        <button id="add-post" type="submit">Update</button>
+        <button class="button is-danger" id="add-post" type="submit">Update</button>
       </form>
     </div>
-
-  </body>
-</html>
+  </div>
+</section>
+{% endblock %}

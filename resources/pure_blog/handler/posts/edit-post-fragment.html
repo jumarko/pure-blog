@@ -1,0 +1,20 @@
+<form action="{{form-action-url}}" method="post">
+  <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}"
+  <div class="field">
+    <label class="label is-large" for="post-title">Title:</label>
+    <div class="control">
+      <input class="input is-primary is-large" id="post-title" name="title" type="text" value="{{title}}">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label is-large" for="post-text">Text:</label>
+    <div class="control">
+      <textarea class="textarea is-primary " id="post-text" name="text" rows="15" cols="66">{{text}}</textarea>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <button class="button is-danger is-large" id="add-post" type="submit" >{{submit-button-text}}</button>
+    </div>
+  </div>
+</form>
