@@ -7,11 +7,11 @@
             [selmer.parser :as selmer]))
 
 ;; TODO: replace hardcoded user id with a real user
-(def user-id 1)
+(def user #:user {:id 1})
 
 (defn- create-post
   [db post]
-  (posts/create-post db user-id (u/namespaced-map "post" post)))
+  (posts/create-post db user (u/namespaced-map "post" post)))
 
 (defn- update-post
   [db post-id post]

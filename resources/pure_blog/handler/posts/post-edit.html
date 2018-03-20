@@ -6,6 +6,11 @@
     <div id="edit-post" class="edit-post">
       <h2 class="subtitle is-2">Update Post</h2>
 
+      <div>
+        <p><i>Updated {{post/updated-date|date:"yyyy-MM-dd HH:mm"}}
+          by {{user/first-name}} {{user/last-name}}</i></p>
+      </div>
+
       <form action="/posts/{{post/id}}" method="post">
         <input type="hidden" name="__anti-forgery-token" value="{{csrf-token}}"
         <div>

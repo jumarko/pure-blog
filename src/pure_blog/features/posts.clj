@@ -73,7 +73,9 @@
   (db/create-post
    db
    (->
-    (readable->db-post user-id (assoc post-data :post/created-date (now))))))
+    (readable->db-post user-id (assoc post-data
+                                      :post/created-date (now)
+                                      :post/updated-date (now))))))
 
 (comment
   (create-post (dev/db) #:user{:id 1} #:post{:id 0 :title "awesome"})
