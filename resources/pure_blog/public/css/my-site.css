@@ -1,0 +1,16 @@
+body {
+  background-color: #f4f4f4;
+}
+.blog-header {
+  min-height: 150px;
+  background-color: deepskyblue;
+}
+
+.blog-title {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.post-text {
+  background-color: lightyellow;
+}

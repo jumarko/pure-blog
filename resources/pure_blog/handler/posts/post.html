@@ -7,15 +7,15 @@
       <a class="button is-danger" href="{{post-edit-link}}">EDIT!</a>
     </p>
 
-    <h1 class="title is-1">{{post/title}}</h1>
+    <h2 class="title is-2">{{post/title}}</h2>
 
     <div>
       <p><i>Created {{post/created-date|date:"yyyy-MM-dd HH:mm"}}
         by {{user/first-name}} {{user/last-name}}</i></p>
     </div>
 
-    <div class="content"
-      <p>{{post/text}}</p>
+    <div class=""
+      {{post/text|linebreaks|safe}}
     </div>
   </div>
 </section>
