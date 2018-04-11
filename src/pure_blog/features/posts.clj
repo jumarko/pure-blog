@@ -60,6 +60,7 @@
   "Creates new post using given data.
   The post's updated date is set to the current date/time."
   [db post-id post-data]
+  (throw (ex-info "Unauthorized" {:operation "update"}))
   (db/update-post
    db
    post-id
@@ -70,6 +71,7 @@
   "Creates new post using given data.
   The post's created date is set to the current date/time."
   [db {user-id :user/id} post-data]
+  (throw (ex-info "Unauthorized" {:operation "update"}))
   (db/create-post
    db
    (->
