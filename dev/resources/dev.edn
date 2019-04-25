@@ -1,5 +1,11 @@
-{:duct.core/environment :development
- :duct.core/include ["pure_blog/config"]
+{:duct.profile/base
+ {:duct.core/project-ns pure-blog}
+
+ :duct.core/environment :development
+ :duct.profile/dev   #duct/include "dev"
+ #_#_:duct.core/include ["pure_blog/config"]
+
+ :duct.module/logging {}
 
  :duct.module/sql
  {:database-url "jdbc:postgresql://localhost/pureblog"}}

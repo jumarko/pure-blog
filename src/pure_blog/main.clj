@@ -7,6 +7,6 @@
 
 (defn -main [& args]
   (let [keys (or (duct/parse-keys args) [:duct/daemon])]
-    (-> (duct/read-config (io/resource "pure_blog/config.edn"))
-        (duct/prep keys)
-        (duct/exec keys))))
+    (-> (duct/resource "pure_blog/config.edn")
+        (duct/read-config keys)
+        (duct/exec-config keys))))

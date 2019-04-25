@@ -25,7 +25,7 @@
 (when (io/resource "local.clj")
   (load "local"))
 
-(integrant.repl/set-prep! (comp duct/prep read-config))
+(integrant.repl/set-prep! (comp duct/prep-config read-config))
 
 ;; see James Reeves' suggestion: https://groups.google.com/forum/#!searchin/duct-clojure/repl|sort:date/duct-clojure/U5pUGC4eeCs/hGnjxztNBQAJ
 (defn db
